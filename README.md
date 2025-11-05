@@ -60,6 +60,7 @@ Next.js 14 collaborative development starter with full AI integration through Cl
 ## Important Links
 
 - **GitHub Repo:** https://github.com/tcpalm-r/ari-jorge-collab
+- **GitHub Actions (CI):** https://github.com/tcpalm-r/ari-jorge-collab/actions
 - **Production Site:** https://ari-jorge-collab.vercel.app (or your Vercel URL)
 - **Supabase Dashboard:** https://app.supabase.com (Project: Ari and Jorge starter)
 - **Vercel Dashboard:** https://vercel.com/dashboard
