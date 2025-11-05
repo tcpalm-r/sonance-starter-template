@@ -1,0 +1,5 @@
+## Environment and Config
+
+.env
+.env*.local
+*.log

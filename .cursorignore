@@ -1,0 +1,65 @@
+## Dependencies and Build Output
+
+node_modules/
+.next/
+out/
+build/
+dist/
+
+
+## Environment and Config
+
+.env
+.env*.local
+*.log
+
+
+## Version Control
+
+.git/
+
+
+## OS Files
+
+.DS_Store
+Thumbs.db
+
+
+## IDE Files
+
+.vscode/
+.idea/
+
+
+## Large Data Files
+
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.pdf
+*.zip
+*.tar.gz
+
+
+## Generated Files
+
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+*.tsbuildinfo
+
+
+## Test Coverage
+
+coverage/
+.nyc_output/
+
+
+## Supabase Local
+
+**/supabase/.branches
+**/supabase/.temp
+
