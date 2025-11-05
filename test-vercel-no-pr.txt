@@ -5,3 +5,5 @@ Expected behavior:
 - Create PR = Vercel preview deployment triggered
 
 Test timestamp: 2025-11-05
+PR created: #5
+Pushing new commit to trigger Vercel re-evaluation
