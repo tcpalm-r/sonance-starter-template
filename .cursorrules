@@ -1,0 +1,27 @@
+# Cursor Rules for Ari and Jorge Starter
+
+## Project Instructions
+
+All project rules, guidelines, and workflows are defined in `CLAUDE.md`.
+
+**Cursor agents and AI assistants MUST read and follow `CLAUDE.md` before making any changes.**
+
+## Key Guidelines from CLAUDE.md
+
+- **Never work directly on main branch** - Always use feature branches
+- **All changes require Pull Requests** - No direct pushes to main
+- **Pre-commit hooks run automatically** - Prettier, ESLint, TypeScript checks
+- **Branch naming conventions**: `feature/`, `fix/`, `docs/`
+- **Deployment via GitHub Actions** - Preview on PRs, Production on main merge
+
+## Reference
+
+See `CLAUDE.md` for complete guidelines including:
+- Golden Rules
+- Tech Stack
+- File Structure
+- Code Style Preferences
+- Deployment Configuration
+- Emergency Help
+
+When in doubt, consult `CLAUDE.md` first.
