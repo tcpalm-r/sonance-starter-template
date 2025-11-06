@@ -2,152 +2,73 @@
 
 Next.js 14 collaborative development starter with full AI integration through Claude Code.
 
-## Quick Start (New Team Member)
+---
 
-### Prerequisites
+## 📂 Documentation
 
-- **Cursor IDE** installed (or any IDE with Claude Code support)
-- **Node.js 18+** installed
-- Access to **GitHub repo and Supabase** (Vercel optional)
+**👉 All documentation has been organized in the [`START_HERE/`](./START_HERE/) folder for easy access.**
 
-### Setup Steps
+### Quick Links:
 
-#### 1. **Set Up MCP Servers (5 minutes)**
+**For Non-Technical Users:**
 
-MCP servers enable Claude Code to interact with GitHub, Vercel, and Supabase using natural language.
+- 📖 **[START_HERE/USER_GUIDE.md](./START_HERE/USER_GUIDE.md)** - Complete guide for working with Claude Code (no Git knowledge required!)
+- 📊 **[START_HERE/WORKFLOW_DIAGRAM.md](./START_HERE/WORKFLOW_DIAGRAM.md)** - Visual workflow diagrams
 
-```bash
-./setup-mcp.sh
-```
+**For Developers & Setup:**
 
-You'll be prompted for two API credentials:
+- 📘 **[START_HERE/README.md](./START_HERE/README.md)** - Full setup guide, tech stack, and quick start
+- 🔧 **[START_HERE/MCP_SETUP.md](./START_HERE/MCP_SETUP.md)** - MCP server configuration
+- 📋 **[START_HERE/EXECUTIVE_SUMMARY.md](./START_HERE/EXECUTIVE_SUMMARY.md)** - Project overview
 
-- GitHub Personal Access Token
-- Supabase Project Reference ID
+**Technical Reference:**
 
-**📖 Detailed instructions:** See `MCP_SETUP.md`
+- 📘 **[CLAUDE.md](./CLAUDE.md)** - Complete technical guide with automated workflows
+- 🎯 **[AGENTS.md](./AGENTS.md)** - Agent configuration reference
 
-#### 2. **Set up environment variables**
+---
 
-```bash
-cp .env.local.example .env.local
-```
-
-Then edit `.env.local` with your Supabase credentials (get from team lead)
-
-#### 3. **Install dependencies**
+## 🚀 Quick Start
 
 ```bash
-npm install
+# 1. Clone the repository
+git clone https://github.com/tcpalm-r/ari-jorge-collab.git
+
+# 2. Navigate to the project
+cd ari-jorge-collab
+
+# 3. See START_HERE/ folder for detailed setup instructions
 ```
 
-#### 4. **Start development server**
+**👉 New to the project? Start with [START_HERE/USER_GUIDE.md](./START_HERE/USER_GUIDE.md)**
 
-```bash
-npm run dev
-```
+---
 
-#### 5. **Open your browser**
-
-Navigate to http://localhost:3000 - you should see the app running!
-
-#### 6. **Test Claude Code + MCP**
-
-In Cursor, try asking Claude:
-
-- "Show me all open pull requests"
-- "Show me the Supabase database schema"
-- "What's on the employee directory page?"
-
-## Important Links
+## 🔗 Important Links
 
 - **GitHub Repo:** https://github.com/tcpalm-r/ari-jorge-collab
-- **GitHub Actions (CI):** https://github.com/tcpalm-r/ari-jorge-collab/actions
 - **Production Site:** https://ari-jorge-collab.vercel.app
-- **Supabase Dashboard:** https://app.supabase.com/project/kjfizpagyleefuucsdbu
 - **Vercel Dashboard:** https://vercel.com/dashboard
+- **Supabase Dashboard:** https://app.supabase.com/project/kjfizpagyleefuucsdbu
 
-## Repository Status
+---
 
-- **Visibility:** Public (enables free branch protection)
-- **Branch Protection:** ✅ Enabled on `main`
-  - Direct pushes to `main` are blocked
-  - All changes require Pull Requests with 1 approval
-  - CI checks must pass before merging
-  - Protection enforced for all team members (including admins)
-- **Pre-commit Hooks:** ✅ Automatic code quality checks
-  - Prettier auto-formats code (spacing, quotes, etc.)
-  - ESLint auto-fixes code style issues
-  - TypeScript type checking catches errors early
-  - Prevents broken code from reaching GitHub
-  - No manual intervention needed - fixes happen automatically!
+## ⚡ Custom Slash Commands
 
-## Key Commands
+Work faster with Claude Code using these commands:
 
 ```bash
-npm run dev          # Start development server
-npm run build        # Create production build
-npm run lint         # Run linter
-npm run type-check   # Check TypeScript errors
+/start-work    # Start your workday with fresh code
+/finish-work   # Save work and optionally create PR
+/sync-main     # Keep branch up-to-date with main
+/check-prs     # Review pull requests
+/cleanup       # Clean up workspace at end of day
 ```
 
-## Workflow & Documentation
+See [START_HERE/USER_GUIDE.md](./START_HERE/USER_GUIDE.md) for complete instructions.
 
-**For Developers:**
+---
 
-- 📘 **`CLAUDE.md`** - Complete workflow guide, coding standards, and best practices
-- 🔧 **`MCP_SETUP.md`** - Detailed MCP server setup and troubleshooting
+## 📜 License
 
-**Golden Rule:** Never work directly on the `main` branch. Always create a feature branch, get PR approval, then merge.
-
-## Getting Help
-
-1. **Ask Claude Code** - Your AI pair programmer (works best with MCP enabled!)
-2. **Check `CLAUDE.md`** - Comprehensive project guide
-3. **Check `MCP_SETUP.md`** - If having issues with GitHub/Vercel/Supabase commands
-4. **Ask your teammate** - Collaboration is key!
-
-## Tech Stack
-
-- **Framework:** Next.js 14 with TypeScript
-- **Database:** Supabase (PostgreSQL)
-- **Hosting:** Vercel (auto-deploy from main branch)
-- **Styling:** Tailwind CSS (with custom dark mode)
-- **AI Integration:** Claude Code with MCP servers for GitHub and Supabase
-
-## Current Features
-
-### Employee Directory
-
-- Dark mode UI with Supabase-style design (`#1c1c1c` background, `#3ECF8E` accents)
-- Scrollable table container with fixed viewport height
-- Displays employee data from Supabase `employees` table
-- Responsive design with truncated text for long values
-- Real-time data fetching using Next.js 14 Server Components
-
-**Location:** `/app/page.tsx`
-
-## MCP-Enabled Commands
-
-Once MCP is set up, you can ask Claude Code natural language questions:
-
-**GitHub:**
-
-- "Show me all open pull requests"
-- "Create a new branch called feature/my-feature"
-- "What files changed in the last commit?"
-- "Create a PR for this branch"
-
-**Supabase:**
-
-- "Show me the database schema"
-- "Query the employees table"
-- "Check database connection status"
-- "What tables exist in the database?"
-
-**Vercel (Use CLI or Dashboard):**
-
-- Terminal: `vercel` - Deploy preview
-- Terminal: `vercel --prod` - Deploy to production
-- Terminal: `vercel logs` - View logs
-- Or ask Claude: "Help me check Vercel deployment status"
+This is a private project. All rights reserved.

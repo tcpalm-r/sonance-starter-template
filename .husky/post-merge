@@ -1,0 +1,52 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Post-merge hook - runs after 'git merge' or 'git pull' completes
+# This helps keep dependencies and environment in sync automatically
+
+echo ""
+echo "🔄 Post-merge hook running..."
+echo ""
+
+# Check if package-lock.json changed
+if git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep --quiet 'package-lock.json'; then
+  echo "📦 package-lock.json changed - installing dependencies..."
+  npm install
+  if [ $? -eq 0 ]; then
+    echo "✅ Dependencies updated successfully!"
+  else
+    echo "❌ npm install failed! You may need to run 'npm install' manually."
+    exit 1
+  fi
+  echo ""
+fi
+
+# Check if .env.local.example changed
+if git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep --quiet '.env.local.example'; then
+  echo "⚠️  .env.local.example was updated!"
+  echo "   Please review your .env.local file to ensure it has all required variables."
+  echo "   Run: 'diff .env.local.example .env.local' to see differences."
+  echo ""
+fi
+
+# Check if migrations or database schema files changed
+if git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep --quiet -E '(migrations?|schema\.sql|supabase)'; then
+  echo "⚠️  Database schema or migrations were updated!"
+  echo "   You may need to run migrations or check Supabase for changes."
+  echo ""
+fi
+
+# Check if TypeScript config changed
+if git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep --quiet 'tsconfig.json'; then
+  echo "⚠️  TypeScript configuration changed!"
+  echo "   You may want to restart your IDE or TypeScript server."
+  echo ""
+fi
+
+# Show summary of what was merged
+echo "📊 Merge summary:"
+git log --oneline --no-decorate -1 HEAD
+echo ""
+
+echo "✅ Post-merge hook complete!"
+echo ""

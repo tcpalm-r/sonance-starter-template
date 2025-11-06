@@ -23,10 +23,19 @@ All AI agents working on this project MUST:
 - Write TypeScript with strict types
 - Follow code style preferences in `CLAUDE.md`
 
+### Parallel Agent Work (Git Worktrees)
+
+- **Multiple agents can work simultaneously** using git worktrees
+- Use `./scripts/worktree.sh create <branch-name>` to create a new worktree
+- Each worktree is a separate directory in `worktrees/` folder
+- Each worktree can run its own dev server and be opened in separate editor windows
+- See `CLAUDE.md` → "Git Worktrees" section for complete documentation
+- When user requests parallel agent work, suggest creating a worktree
+
 ### Pull Requests
 
 - Never create PRs without user approval after committing
-- Follow PR workflow documented in `PR_WORKFLOW_GUIDE.md`
+- Follow PR workflow documented in `USER_GUIDE.md`
 - Ensure CI passes before requesting merge
 - Include clear descriptions following `CLAUDE.md` guidelines
 
@@ -49,7 +58,7 @@ All AI agents working on this project MUST:
 - **`CLAUDE.md`** - Primary project rules and guidelines
 - **`.cursorrules`** - Cursor-specific configuration
 - **`AGENTS.md`** (this file) - Agent behavior documentation
-- **`PR_WORKFLOW_GUIDE.md`** - PR workflow for non-technical users
+- **`USER_GUIDE.md`** - Complete user guide including PR workflow for non-technical users
 - **`GITHUB_ACTIONS_DEPLOYMENT.md`** - Deployment configuration
 
 ## Tech Stack Summary

@@ -10,7 +10,10 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "validate-env": "node -e \"const fs = require('fs'); const path = '.env.local'; if (!fs.existsSync(path)) { console.error('❌ .env.local file not found!'); process.exit(1); } const env = fs.readFileSync(path, 'utf8'); const required = ['NEXT_PUBLIC_SUPABASE_URL', 'NEXT_PUBLIC_SUPABASE_ANON_KEY', 'SUPABASE_SERVICE_ROLE_KEY']; const missing = required.filter(v => !env.includes(v)); if (missing.length > 0) { console.error('❌ Missing required environment variables:', missing.join(', ')); process.exit(1); } console.log('✅ All required environment variables present');\"",
+    "check-branch": "node -e \"const { execSync } = require('child_process'); const branch = execSync('git rev-parse --abbrev-ref HEAD', { encoding: 'utf8' }).trim(); if (branch === 'main') { console.error('❌ You are on the main branch!'); console.error('Please create a feature branch first.'); process.exit(1); } console.log('✅ On feature branch:', branch);\"",
+    "validate": "npm run validate-env && npm run type-check && npm run lint"
   },
   "dependencies": {
     "@supabase/ssr": "^0.5.0",

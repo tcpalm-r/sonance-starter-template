@@ -95,3 +95,11 @@ Thumbs.db
 
 .cursor/.env.mcp
 .cursor/.env.mcp.backup
+
+## Git Worktrees
+
+# Worktrees directory contains separate working directories
+# We want to ignore node_modules in worktrees (they'll be created per worktree)
+worktrees/*/node_modules/
+# But keep the directory structure itself
+!worktrees/.gitkeep

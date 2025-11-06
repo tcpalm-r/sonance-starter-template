@@ -5,6 +5,7 @@
 Model Context Protocol (MCP) allows Claude Code to interact with external services like GitHub and Supabase using natural language commands.
 
 **Instead of running technical commands, you can just ask:**
+
 - "Show me all open pull requests"
 - "Query the users table in Supabase"
 - "Create a new branch for my feature"
@@ -16,12 +17,14 @@ Model Context Protocol (MCP) allows Claude Code to interact with external servic
 ### Prerequisites
 
 Before you start, you'll need:
+
 1. **Cursor IDE** installed and open with this project
 2. **Two API credentials** (instructions below on how to get them)
 
 ### Step 1: Get Your API Tokens
 
 #### GitHub Personal Access Token
+
 1. Go to: https://github.com/settings/tokens
 2. Click **"Generate new token"** → **"Generate new token (classic)"**
 3. Give it a name like "MCP Server"
@@ -33,6 +36,7 @@ Before you start, you'll need:
 6. **Copy the token** (you won't see it again!)
 
 #### Supabase Project Reference ID
+
 1. Go to: https://app.supabase.com
 2. Select your **"Ari and Jorge starter"** project
 3. Click **Settings** (gear icon) → **General**
@@ -47,6 +51,7 @@ Open a terminal in this project directory and run:
 ```
 
 The script will prompt you for:
+
 1. GitHub Personal Access Token
 2. Supabase Project Reference ID
 
@@ -55,6 +60,7 @@ Just paste them in when asked.
 ### Step 3: Restart Cursor
 
 After the script completes:
+
 1. **Quit Cursor completely** (Cmd+Q on Mac)
 2. **Reopen Cursor**
 3. **Open this project**
@@ -62,6 +68,7 @@ After the script completes:
 ### Step 4: Test It!
 
 Try asking Claude Code:
+
 - "Show me all open pull requests on GitHub"
 - "Show me the database tables in Supabase"
 - "Create a new feature branch"
@@ -73,18 +80,21 @@ Try asking Claude Code:
 The project includes two MCP servers (both hosted remotely):
 
 ### 1. **GitHub MCP** (Remote)
+
 - **URL:** `https://api.githubcopilot.com/mcp/`
 - **Purpose:** Manages repositories, pull requests, issues, and workflows
 - **Authentication:** Your GitHub Personal Access Token
 - **Example commands:** "Show me all open PRs", "Create a feature branch"
 
 ### 2. **Supabase MCP** (Remote)
+
 - **URL:** `https://mcp.supabase.com/mcp`
 - **Purpose:** Query database, manage tables, check auth status
 - **Authentication:** Your project reference ID
 - **Example commands:** "Show database schema", "Query the employees table"
 
 ### Note on Vercel
+
 Vercel MCP has been intentionally excluded due to security concerns (API tokens provide excessive permissions). Use the Vercel CLI (`vercel` command) or Vercel dashboard for deployment operations instead.
 
 ---
@@ -125,6 +135,7 @@ Run: `chmod +x setup-mcp.sh`
 ## Security Notes
 
 **Your API tokens:**
+
 - ✅ Stored locally in `.cursor/.env.mcp`
 - ✅ Protected by `.gitignore` (never committed)
 - ✅ Only accessible to you on your machine
@@ -132,6 +143,7 @@ Run: `chmod +x setup-mcp.sh`
 - ❌ Not visible to others
 
 **Best practices:**
+
 - Don't share your `.cursor/.env.mcp` file
 - Rotate tokens regularly (every 90 days)
 - Use tokens with minimum required permissions

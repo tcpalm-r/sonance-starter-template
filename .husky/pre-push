@@ -1,0 +1,121 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Pre-push hook - runs before 'git push' executes
+# This prevents common mistakes and ensures code quality
+
+echo ""
+echo "🚀 Pre-push hook running..."
+echo ""
+
+# Get the current branch name
+current_branch=$(git symbolic-ref --short HEAD)
+
+# 1. CRITICAL: Block pushes to main branch
+if [ "$current_branch" = "main" ]; then
+  echo "❌ BLOCKED: Direct push to main branch is not allowed!"
+  echo ""
+  echo "The main branch is protected. You must:"
+  echo "  1. Create a feature branch"
+  echo "  2. Make your changes on that branch"
+  echo "  3. Create a Pull Request"
+  echo "  4. Get approval and merge via GitHub"
+  echo ""
+  echo "To create a feature branch, run:"
+  echo "  git checkout -b feature/your-feature-name"
+  echo ""
+  echo "Or ask Claude Code: 'Create a feature branch for me'"
+  echo ""
+  exit 1
+fi
+
+# 2. Check if branch is far behind main
+git fetch origin main --quiet
+
+commits_behind=$(git rev-list --count HEAD..origin/main)
+
+if [ "$commits_behind" -gt 10 ]; then
+  echo "⚠️  WARNING: Your branch is $commits_behind commits behind main!"
+  echo ""
+  echo "Consider syncing with main before pushing to avoid conflicts:"
+  echo "  git fetch origin && git rebase origin/main"
+  echo ""
+  echo "Or ask Claude Code: 'Sync my branch with main'"
+  echo ""
+  read -p "Continue pushing anyway? (y/n) " -n 1 -r
+  echo ""
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Push cancelled. Sync with main first."
+    exit 1
+  fi
+fi
+
+# 3. Run TypeScript type checking
+echo "🔍 Running TypeScript type check..."
+npm run type-check --silent
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "❌ TypeScript errors found!"
+  echo ""
+  echo "Please fix type errors before pushing."
+  echo "Run: npm run type-check"
+  echo ""
+  exit 1
+fi
+echo "✅ TypeScript check passed!"
+echo ""
+
+# 4. Run production build test
+echo "🏗️  Testing production build..."
+npm run build > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "❌ Production build failed!"
+  echo ""
+  echo "Your code has errors that would break deployment."
+  echo "Run: npm run build"
+  echo ""
+  exit 1
+fi
+echo "✅ Build successful!"
+echo ""
+
+# 5. Check for common mistakes
+echo "🔍 Checking for common issues..."
+
+# Check if remote branch exists
+if git rev-parse --verify "origin/$current_branch" >/dev/null 2>&1; then
+  # Remote branch exists, check for console.log statements
+  console_logs=$(git diff origin/$current_branch HEAD --diff-filter=ACM -- '*.ts' '*.tsx' '*.js' '*.jsx' 2>/dev/null | grep -c "console.log" || echo 0)
+  if [ "$console_logs" -gt 0 ]; then
+    echo "⚠️  Found $console_logs console.log statements in your changes."
+    echo "   Consider removing debug logs before pushing."
+    echo ""
+  fi
+
+  # Check for TODO or FIXME in new code (warning only)
+  todos=$(git diff origin/$current_branch HEAD --diff-filter=ACM 2>/dev/null | grep -c "TODO\|FIXME" || echo 0)
+  if [ "$todos" -gt 0 ]; then
+    echo "ℹ️  Found $todos TODO/FIXME comments in your changes."
+    echo "   Make sure these are intentional before pushing."
+    echo ""
+  fi
+else
+  echo "ℹ️  First push to this branch - skipping diff checks"
+  echo ""
+fi
+
+# Check for .env or .env.local in staged files (should never be committed)
+if git diff --cached --name-only | grep -q "^\.env$\|^\.env\.local$"; then
+  echo "❌ BLOCKED: Attempting to commit .env or .env.local file!"
+  echo ""
+  echo "These files contain secrets and should NEVER be committed."
+  echo "Please unstage them: git reset HEAD .env .env.local"
+  echo ""
+  exit 1
+fi
+
+echo "✅ Pre-push validation complete!"
+echo ""
+echo "🚀 Pushing to $current_branch..."
+echo ""
