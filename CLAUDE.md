@@ -465,6 +465,20 @@ Ready to start work!
 ❌ Commit files that fail validation (TypeScript errors, build failures)
 ❌ Force push without explicit user request
 
+**Long Session Recommendations:**
+
+When a session has accumulated many commits (5+ commits), AI should proactively recommend pushing:
+
+- "You've made 5 commits this session. Consider pushing to main so changes are accessible on other machines."
+- "Long session with 8 commits. Would you like to push to main for backup and cross-device access?"
+
+**Benefits of periodic pushes during long sessions:**
+
+- Backup work to remote
+- Access latest changes on other machines
+- Reduce risk of losing work
+- Keep remote repository relatively up-to-date
+
 **End of Session Workflow:**
 
 When user indicates end of session:
