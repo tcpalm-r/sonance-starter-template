@@ -91,7 +91,9 @@ AI will automatically normalize the project name for URLs and filenames:
 1. **Check git status** - ensure working directory is clean
 2. **Normalize the project name** to kebab-case (e.g., "my-project")
 3. **Create title-case version** for display (e.g., "My Project")
-4. **Fork the repository** using `gh repo fork --fork-name [normalized-name]`
+4. **Fork the repository:**
+   - **FIRST:** Try using GitHub MCP if available (preferred method)
+   - **FALLBACK:** Use `gh repo fork --fork-name [normalized-name]` if MCP unavailable
 5. **Get GitHub username** from the newly created fork
 6. **Update all project files:**
    - `package.json` - Update `name` field (kebab-case)
@@ -136,7 +138,9 @@ AI will automatically normalize the project name for URLs and filenames:
 1. Checks git status is clean
 2. Normalizes name: "Customer Portal" → "customer-portal" (kebab-case)
 3. Creates title: "Customer Portal" (Title Case)
-4. Runs: `gh repo fork tcpalm-r/ari-jorge-collab --fork-name customer-portal`
+4. Forks repository:
+   - Tries GitHub MCP first (if configured)
+   - Falls back to: `gh repo fork tcpalm-r/ari-jorge-collab --fork-name customer-portal`
 5. Gets username from fork (e.g., "joedoe")
 6. Updates package.json: `"name": "customer-portal"`
 7. Updates README.md title: `# Customer Portal`
@@ -152,10 +156,11 @@ AI will automatically normalize the project name for URLs and filenames:
 
 ✅ **AI MUST automatically do:**
 
-- Check if `gh` CLI is installed and authenticated
+- **PRIORITY 1:** Try GitHub MCP to fork repository (if available)
+- **PRIORITY 2:** Fall back to `gh repo fork --fork-name [kebab-case-name]` if MCP unavailable
+- Check if `gh` CLI is available as fallback
 - Normalize project name to kebab-case for URLs/filenames
 - Create Title Case version for display titles
-- Fork using `gh repo fork --fork-name [kebab-case-name]`
 - Extract GitHub username from fork URL
 - Update package.json with kebab-case name
 - Update README.md title with Title Case
@@ -171,13 +176,20 @@ AI will automatically normalize the project name for URLs and filenames:
 - Push without user saying "then push"
 - Remove workflow documentation from CLAUDE.md
 - Skip the fork step - always fork first
+- Use CLI before checking for GitHub MCP
 
 ⚠️ **AI should check and warn if:**
 
-- GitHub CLI (`gh`) is not installed
-- User is not authenticated with `gh auth status`
+- Neither GitHub MCP nor CLI (`gh`) are available
+- User is not authenticated (check `gh auth status` if using CLI)
 - Working directory has uncommitted changes
 - Fork already exists (may need to delete old fork first)
+
+**Fork Method Priority:**
+
+1. **GitHub MCP** (preferred - use if configured globally)
+2. **GitHub CLI** (`gh repo fork`) (fallback if MCP unavailable)
+3. **Manual** (last resort - guide user to fork on GitHub)
 
 ---
 
