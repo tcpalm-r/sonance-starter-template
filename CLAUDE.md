@@ -51,7 +51,6 @@ This project uses a simplified workflow for solo development. All work happens d
 
 ❌ **AI MUST NEVER do:**
 
-- Push to remote (user does this manually at end of session)
 - Edit `.env` files or environment variables
 - Edit `~/.cursor/mcp.json` configuration file
 - Ignore CLAUDE.md or .cursorrules instructions
