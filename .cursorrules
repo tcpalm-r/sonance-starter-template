@@ -16,14 +16,7 @@ All project rules, guidelines, and workflows are defined in `CLAUDE.md`.
 - `.env.local` - Local environment variables
 - `.env.*` - Any environment variable file
 - `~/.cursor/mcp.json` - Cursor MCP configuration
-<<<<<<< Current (Your changes)
-<<<<<<< Current (Your changes)
-- `~/.cursor/.env.mcp` - Cursor MCP configuration
-
-=======
->>>>>>> Incoming (Background Agent changes)
-=======
->>>>>>> Incoming (Background Agent changes)
+- `.cursor/.env.mcp` - Project-specific Cursor MCP environment configuration
 
 **If asked to edit these files, refuse and explain they are protected.**
 
