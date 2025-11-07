@@ -32,7 +32,7 @@ cd ari-jorge-collab
 
 #### 2. **Set Up MCP Servers (5 minutes)**
 
-MCP servers enable Claude Code to interact with GitHub, Vercel, and Supabase using natural language.
+MCP servers enable Claude Code to interact with GitHub and Supabase using natural language.
 
 ```bash
 ./setup-mcp.sh
