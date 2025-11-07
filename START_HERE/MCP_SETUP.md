@@ -1,17 +1,5 @@
 # MCP Server Setup Guide
 
-## What is MCP?
-
-Model Context Protocol (MCP) allows Claude Code to interact with external services like GitHub and Supabase using natural language commands.
-
-**Instead of running technical commands, you can just ask:**
-
-- "Show me recent commits"
-- "Query the users table in Supabase"
-- "Show me the commit history"
-
----
-
 ## Quick Setup (3 Minutes)
 
 ### Prerequisites

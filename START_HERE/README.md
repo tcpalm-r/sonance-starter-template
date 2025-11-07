@@ -9,7 +9,6 @@ Next.js 14 collaborative development starter with full AI integration through Cl
 **START HERE:**
 
 - 🔧 **[MCP_SETUP.md](./MCP_SETUP.md)** - MCP server setup and troubleshooting
-- 📋 **[EXECUTIVE_SUMMARY.md](./EXECUTIVE_SUMMARY.md)** - Project overview and summary
 
 **For Developers:**
 
