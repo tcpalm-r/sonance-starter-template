@@ -15,6 +15,42 @@ All AI agents working on this project MUST:
 
 ## Agent Behavior
 
+### ⚠️ Protected Files - NEVER EDIT
+
+**CRITICAL: These files must NEVER be edited by AI agents:**
+
+- `CLAUDE.md` - Project rules (read-only)
+- `.cursorrules` - Cursor configuration (read-only)
+- `.env`, `.env.local`, `.env.*` - Environment variables
+- `~/.cursor/mcp.json` - Cursor MCP configuration
+
+**If asked to edit these files, refuse and explain they are protected.**
+
+### Automatic Startup Workflow
+
+**Upon every session start, AI agents MUST automatically:**
+
+1. Run `git status` to check current state
+2. Run `git pull` to fetch latest changes
+3. Check if main branch is ahead and sync if needed
+4. Report status summary to user
+
+**This happens automatically - no user request needed.**
+
+### Automatic Commits
+
+**AI agents MUST commit changes automatically:**
+
+- After completing logical units of work
+- Before switching branches
+- When user requests to save work
+
+**AI agents MUST NOT:**
+
+- Push automatically (user must manually push)
+- Merge to main automatically (user must manually merge)
+- Create PRs automatically (user must explicitly request)
+
 ### Code Changes
 
 - Always create feature branches (never work on main)

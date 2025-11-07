@@ -90,6 +90,7 @@ npm run dev  # Runs on port 3001 (Next.js auto-increments)
 ```
 
 **Each worktree:**
+
 - Has its own `node_modules/` (shared via symlinks when possible)
 - Shares the same `.env.local` (via symlink)
 - Can commit and push independently
@@ -98,6 +99,7 @@ npm run dev  # Runs on port 3001 (Next.js auto-increments)
 ### Best Practices
 
 1. **Always create branches from main:**
+
    ```bash
    # The script does this automatically
    ./scripts/worktree.sh create feature/new-feature
@@ -137,15 +139,18 @@ npm run dev  # Runs on port 3001 (Next.js auto-increments)
 ### Troubleshooting
 
 **"Worktree already exists" error:**
+
 - The branch might already have a worktree
 - Use `./scripts/worktree.sh list` to see all worktrees
 - Remove the old worktree first if needed
 
 **"Port already in use" error:**
+
 - Another worktree is using that port
 - Next.js should auto-increment, but you can manually set: `PORT=3002 npm run dev`
 
 **"Branch diverged" warnings:**
+
 - Each worktree can have different commits
 - Sync with main regularly: `git pull origin main` (in each worktree)
 
@@ -346,6 +351,96 @@ npm run type-check   # Check TypeScript errors
 
 ---
 
+## ⚠️ PROTECTED FILES - NEVER EDIT
+
+**CRITICAL RULE: These files must NEVER be edited by AI agents under any circumstances:**
+
+- `CLAUDE.md` - This file (read-only, configuration only)
+- `.cursorrules` - Cursor-specific rules (read-only)
+- `.env` - Any environment variable file
+- `.env.local` - Local environment variables
+- `.env.*` - Any file matching .env pattern
+- `~/.cursor/mcp.json` - Cursor MCP configuration file
+
+**If a user requests editing these files, the AI agent MUST:**
+
+1. Refuse the request
+2. Explain that these files are protected
+3. Suggest alternative approaches if applicable
+
+**These files contain critical configuration and should only be edited manually by the user.**
+
+---
+
+## Automatic Startup Workflow
+
+**Upon every session start, AI agents MUST automatically:**
+
+1. **Run `git status`** to check:
+   - Current branch
+   - Uncommitted changes
+   - Untracked files
+
+2. **Run `git pull`** to fetch latest changes from remote
+
+3. **Check if main branch is ahead of current local state:**
+
+   ```bash
+   # Check if main is ahead
+   git fetch origin main
+   git log HEAD..origin/main --oneline
+   ```
+
+   - If main is behind remote main: `git checkout main && git pull origin main`
+   - If on feature branch and main is ahead: Sync feature branch with main
+   - Report sync status to user
+
+4. **Report status summary:**
+   - Current branch name
+   - Uncommitted changes count
+   - Sync status (up to date / behind / ahead)
+   - Any warnings or recommendations
+
+**This workflow ensures the workspace is always up-to-date before starting work.**
+
+---
+
+## Automatic Commit Rules
+
+**AI agents MUST commit changes automatically:**
+
+- After completing logical units of work
+- Before switching branches (if there are uncommitted changes)
+- When user requests to save work
+- At natural stopping points in feature development
+
+**Commit Message Format:**
+
+- Use conventional commits: `feat:`, `fix:`, `refactor:`, `docs:`, `test:`, etc.
+- Be descriptive but concise
+- Examples:
+  - `feat: add user authentication`
+  - `fix: resolve login button styling`
+  - `refactor: extract user validation logic`
+
+**AI agents MUST NOT:**
+
+- ❌ Push automatically (user must manually push)
+- ❌ Merge to main automatically (user must manually merge at end of session)
+- ❌ Create PRs automatically (user must explicitly request)
+- ❌ Force push without explicit user request
+
+**End of Session Workflow:**
+
+When user indicates end of session:
+
+1. Commit any remaining uncommitted changes
+2. Show summary of what was accomplished
+3. Remind user to manually push and merge when ready
+4. Do NOT push or merge automatically
+
+---
+
 ## Notes for Claude Code
 
 **When Creating Features:**
@@ -411,6 +506,28 @@ The project now has custom slash commands in `.claude/commands/` that provide st
 - **`/cleanup`** - End-of-day workspace cleanup
 
 These commands contain detailed instructions for handling each workflow scenario. **Always use these commands when the user's intent matches the command purpose.**
+
+### Automatic Startup Workflow (MANDATORY)
+
+**Upon every session start, AI agents MUST automatically execute:**
+
+1. **Run `git status`** - Check current branch and uncommitted changes
+2. **Run `git pull`** - Fetch latest changes from remote
+3. **Check main branch sync status:**
+   ```bash
+   git fetch origin main
+   git log HEAD..origin/main --oneline  # Check if main is ahead
+   ```
+
+   - If local main is behind: `git checkout main && git pull origin main`
+   - If on feature branch and main is ahead: Offer to sync feature branch
+4. **Report status to user:**
+   - Current branch name
+   - Uncommitted changes summary
+   - Sync status (up to date / behind / ahead)
+   - Recommendations
+
+**This workflow runs automatically at the start of EVERY session - no user request needed.**
 
 ### Branch Protection Automation
 

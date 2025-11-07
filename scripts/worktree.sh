@@ -102,6 +102,13 @@ create_worktree() {
         ln -s "$REPO_ROOT/.env.local" "$worktree_path/.env.local"
     fi
     
+    # Create .cursor/.env.mcp symlink if it exists in main repo
+    if [ -f "$REPO_ROOT/.cursor/.env.mcp" ]; then
+        print_info "Creating symlink for .cursor/.env.mcp"
+        mkdir -p "$worktree_path/.cursor"
+        ln -s "$REPO_ROOT/.cursor/.env.mcp" "$worktree_path/.cursor/.env.mcp"
+    fi
+    
     print_success "Worktree created successfully!"
     echo ""
     echo "To use this worktree:"

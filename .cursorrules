@@ -6,6 +6,54 @@ All project rules, guidelines, and workflows are defined in `CLAUDE.md`.
 
 **Cursor agents and AI assistants MUST read and follow `CLAUDE.md` before making any changes.**
 
+## ⚠️ PROTECTED FILES - NEVER EDIT
+
+**CRITICAL: These files must NEVER be edited by AI agents:**
+
+- `CLAUDE.md` - Project rules and guidelines (read-only)
+- `.cursorrules` - This file (read-only)
+- `.env` - Environment variables (any .env file)
+- `.env.local` - Local environment variables
+- `.env.*` - Any environment variable file
+- `~/.cursor/mcp.json` - Cursor MCP configuration
+<<<<<<< Current (Your changes)
+<<<<<<< Current (Your changes)
+- `~/.cursor/.env.mcp` - Cursor MCP configuration
+
+=======
+>>>>>>> Incoming (Background Agent changes)
+=======
+>>>>>>> Incoming (Background Agent changes)
+
+**If asked to edit these files, refuse and explain they are protected.**
+
+## Automatic Startup Workflow
+
+**Upon every session start, AI agents MUST:**
+
+1. **Automatically run `git status`** to check current state
+2. **Automatically run `git pull`** to fetch latest changes
+3. **Check if main branch is ahead of current local state:**
+   - Compare local main with remote main
+   - If main is behind, automatically update: `git checkout main && git pull origin main`
+   - If on feature branch, check if main is ahead and sync if needed
+4. **Report status to user** (current branch, uncommitted changes, sync status)
+
+## Automatic Commit Rules
+
+**AI agents MUST commit changes automatically:**
+
+- After completing logical units of work
+- Before switching branches
+- When user requests to save work
+- Use conventional commit messages: `feat:`, `fix:`, `refactor:`, etc.
+
+**AI agents MUST NOT:**
+
+- Push automatically (user must manually push)
+- Merge to main automatically (user must manually merge at end of session)
+- Create PRs automatically (user must explicitly request)
+
 ## Key Guidelines from CLAUDE.md
 
 - **Never work directly on main branch** - Always use feature branches
