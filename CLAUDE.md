@@ -1,4 +1,4 @@
-# Ari and Jorge Starter
+# Sonance Starter Template
 
 ## Project Overview
 
@@ -66,7 +66,7 @@ AI automatically renames all project files and pushes to the current repository.
 
 ### Prerequisites (User Does This First)
 
-1. Go to template repo: https://github.com/tcpalm-r/ari-jorge-collab
+1. Go to template repo: https://github.com/tcpalm-r/sonance-starter-template
 2. Click **"Use this template"** button
 3. Name the new repository (GitHub handles the kebab-case)
 4. Clone the new repository locally

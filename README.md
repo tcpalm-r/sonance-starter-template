@@ -1,4 +1,4 @@
-# Ari and Jorge Starter
+# Sonance Starter Template
 
 Next.js 14 collaborative development starter with full AI integration through Claude Code.
 
@@ -25,8 +25,8 @@ Next.js 14 collaborative development starter with full AI integration through Cl
 #### 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/tcpalm-r/ari-jorge-collab.git
-cd ari-jorge-collab
+git clone https://github.com/tcpalm-r/sonance-starter-template.git
+cd sonance-starter-template
 ```
 
 #### 2. **Set up environment variables**
@@ -57,9 +57,9 @@ Navigate to http://localhost:3000 - you should see the app running!
 
 ## 🔗 Important Links
 
-- **GitHub Repo:** https://github.com/tcpalm-r/ari-jorge-collab
-- **GitHub Actions (CI/CD):** https://github.com/tcpalm-r/ari-jorge-collab/actions
-- **Production Site:** https://ari-jorge-collab.vercel.app
+- **GitHub Repo:** https://github.com/tcpalm-r/sonance-starter-template
+- **GitHub Actions (CI/CD):** https://github.com/tcpalm-r/sonance-starter-template/actions
+- **Production Site:** https://sonance-starter-template.vercel.app
 - **Supabase Dashboard:** https://app.supabase.com/project/kjfizpagyleefuucsdbu
 - **Vercel Dashboard:** https://vercel.com/dashboard
 

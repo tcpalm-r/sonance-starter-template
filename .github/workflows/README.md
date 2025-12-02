@@ -50,7 +50,7 @@ When you create a PR, you'll see status checks at the bottom:
 
 ### On GitHub Actions Tab
 
-1. Go to: https://github.com/tcpalm-r/ari-jorge-collab/actions
+1. Go to: https://github.com/tcpalm-r/sonance-starter-template/actions
 2. See all workflow runs
 3. Click any run to see detailed logs
 
@@ -229,7 +229,7 @@ Claude Code can modify `.github/workflows/ci.yml` to add more checks!
 
 ## Viewing This CI Run
 
-Current run: https://github.com/tcpalm-r/ari-jorge-collab/actions/runs/19114168942
+Current run: https://github.com/tcpalm-r/sonance-starter-template/actions
 
 **Status:** ✅ Passed
 **Duration:** ~1 minute 23 seconds

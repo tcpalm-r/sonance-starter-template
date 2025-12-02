@@ -6,7 +6,7 @@ import { Sidebar } from '@/components/layout/Sidebar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Ari and Jorge Starter',
+  title: 'Sonance Starter Template',
   description: 'Next.js 14 starter project with Supabase',
 }
 
